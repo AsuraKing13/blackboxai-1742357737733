@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sarawak Tourism Cluster Management</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="min-h-screen flex">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 bg-gray-800">
+                <div class="flex items-center h-16 px-4 bg-gray-900">
+                    <span class="text-xl font-bold text-white">Admin Dashboard</span>
+                </div>
+                <div class="flex flex-col flex-1 overflow-y-auto">
+                    <nav class="flex-1 px-2 py-4 space-y-1">
+                        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium text-white bg-gray-900 rounded-md group">
+                            <i class="fas fa-home mr-3"></i>
+                            Dashboard
+                        </a>
+                        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group">
+                            <i class="fas fa-layer-group mr-3"></i>
+                            Clusters
+                        </a>
+                        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group">
+                            <i class="fas fa-calendar mr-3"></i>
+                            Events
+                        </a>
+                        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group">
+                            <i class="fas fa-users mr-3"></i>
+                            Users
+                        </a>
+                        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group">
+                            <i class="fas fa-chart-bar mr-3"></i>
+                            Analytics
+                        </a>
+                        <a href="#" class="flex items-center px-2 py-2 text-sm font-medium text-gray-300 rounded-md hover:bg-gray-700 hover:text-white group">
+                            <i class="fas fa-cog mr-3"></i>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Navigation -->
+            <div class="bg-white shadow">
+                <div class="flex items-center justify-between h-16 px-4">
+                    <button class="md:hidden text-gray-500 hover:text-gray-600">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <button class="flex items-center text-gray-500 hover:text-gray-600">
+                                <img class="w-8 h-8 rounded-full" src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg" alt="Admin profile">
+                                <span class="ml-2">Admin User</span>
+                                <i class="fas fa-chevron-down ml-2"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <main class="flex-1 overflow-y-auto bg-gray-50 p-6">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Page Header -->
+                    <div class="flex items-center justify-between mb-8">
+                        <h1 class="text-2xl font-semibold text-gray-900">Dashboard Overview</h1>
+                        <button class="px-4 py-2 bg-emerald-600 text-white rounded-md hover:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                            <i class="fas fa-plus mr-2"></i>
+                            Add New Cluster
+                        </button>
+                    </div>
+
+                    <!-- Stats Cards -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- Total Clusters -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-emerald-500 rounded-full">
+                                    <i class="fas fa-layer-group text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h2 class="text-sm font-medium text-gray-500">Total Clusters</h2>
+                                    <p class="text-2xl font-semibold text-gray-900">12</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 text-sm font-medium">
+                                        <i class="fas fa-arrow-up mr-1"></i>8%
+                                    </span>
+                                    <span class="ml-2 text-sm text-gray-500">From last month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Active Events -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-blue-500 rounded-full">
+                                    <i class="fas fa-calendar text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h2 class="text-sm font-medium text-gray-500">Active Events</h2>
+                                    <p class="text-2xl font-semibold text-gray-900">24</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 text-sm font-medium">
+                                        <i class="fas fa-arrow-up mr-1"></i>12%
+                                    </span>
+                                    <span class="ml-2 text-sm text-gray-500">From last month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Total Visitors -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-purple-500 rounded-full">
+                                    <i class="fas fa-users text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h2 class="text-sm font-medium text-gray-500">Total Visitors</h2>
+                                    <p class="text-2xl font-semibold text-gray-900">48.5K</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 text-sm font-medium">
+                                        <i class="fas fa-arrow-up mr-1"></i>15%
+                                    </span>
+                                    <span class="ml-2 text-sm text-gray-500">From last month</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Revenue -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <div class="flex items-center">
+                                <div class="p-3 bg-yellow-500 rounded-full">
+                                    <i class="fas fa-dollar-sign text-white"></i>
+                                </div>
+                                <div class="ml-4">
+                                    <h2 class="text-sm font-medium text-gray-500">Revenue</h2>
+                                    <p class="text-2xl font-semibold text-gray-900">$245.8K</p>
+                                </div>
+                            </div>
+                            <div class="mt-4">
+                                <div class="flex items-center">
+                                    <span class="text-green-500 text-sm font-medium">
+                                        <i class="fas fa-arrow-up mr-1"></i>10%
+                                    </span>
+                                    <span class="ml-2 text-sm text-gray-500">From last month</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Section -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <!-- Visitor Trends -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Visitor Trends</h3>
+                            <canvas id="visitorChart" height="300"></canvas>
+                        </div>
+
+                        <!-- Cluster Performance -->
+                        <div class="bg-white rounded-lg shadow p-6">
+                            <h3 class="text-lg font-medium text-gray-900 mb-4">Cluster Performance</h3>
+                            <canvas id="clusterChart" height="300"></canvas>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="bg-white rounded-lg shadow overflow-hidden">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900">Recent Activities</h3>
+                        </div>
+                        <div class="divide-y divide-gray-200">
+                            <div class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-plus-circle text-emerald-500"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-900">New cluster 'Cultural Heritage' added</p>
+                                        <p class="text-sm text-gray-500">2 hours ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-edit text-blue-500"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-900">Updated 'Nature Adventure' cluster details</p>
+                                        <p class="text-sm text-gray-500">5 hours ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="px-6 py-4">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0">
+                                        <i class="fas fa-calendar-plus text-purple-500"></i>
+                                    </div>
+                                    <div class="ml-4">
+                                        <p class="text-sm font-medium text-gray-900">New event 'Food Festival 2024' scheduled</p>
+                                        <p class="text-sm text-gray-500">1 day ago</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Visitor Trends Chart
+        const visitorCtx = document.getElementById('visitorChart').getContext('2d');
+        new Chart(visitorCtx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Monthly Visitors',
+                    data: [30000, 35000, 32000, 40000, 45000, 48500],
+                    borderColor: 'rgb(59, 130, 246)',
+                    tension: 0.4,
+                    fill: false
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value / 1000 + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Cluster Performance Chart
+        const clusterCtx = document.getElementById('clusterChart').getContext('2d');
+        new Chart(clusterCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Cultural', 'Nature', 'Food', 'Adventure'],
+                datasets: [{
+                    label: 'Visitor Count',
+                    data: [15000, 12000, 9000, 12500],
+                    backgroundColor: [
+                        'rgba(59, 130, 246, 0.5)',
+                        'rgba(16, 185, 129, 0.5)',
+                        'rgba(245, 158, 11, 0.5)',
+                        'rgba(139, 92, 246, 0.5)'
+                    ],
+                    borderColor: [
+                        'rgb(59, 130, 246)',
+                        'rgb(16, 185, 129)',
+                        'rgb(245, 158, 11)',
+                        'rgb(139, 92, 246)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value / 1000 + 'K';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // Mobile menu toggle
+        document.querySelector('button.md\\:hidden').addEventListener('click', function() {
+            const sidebar = document.querySelector('.md\\:flex-shrink-0');
+            sidebar.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>
